@@ -38,9 +38,12 @@ const Home: NextPage = () => {
       <ul>
         {stateData?.map((post) => {
           return(
-           <p>{post.id}</p> 
+            <>
+           <p key={post.id}>{post.id}</p>
+           <p>{post.title}</p>
+           </>           
           )
-        })</p>}
+        })}
       </ul>
     </div>
   )
