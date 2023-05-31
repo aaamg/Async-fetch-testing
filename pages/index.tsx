@@ -8,6 +8,8 @@ const Home: NextPage = () => {
   
   const [stateData, setStateData] = useState();
   
+  useEffect(() => { 
+  
   const fetcher = async () => {
     let url = 'https://jsonplaceholder.typicode.com/posts/'
     
@@ -17,26 +19,28 @@ const Home: NextPage = () => {
       const result = await response.json();
       console.log(result)
       setStateData(result)
-      //console.log(stateData)
+      console.log("sd: ", stateData)
     } catch (error){
       
-      console.log("Error fetching data!: ", error);
+      console.log("Error fetching data: ", error);
       
     }
   }
   
-  useEffect(() => { 
-    fetcher()
-  }, [])
+    fetcher()    
+  }, []) 
+  
+  
   
   return (
     <div className={styles.container}>
-      <p>{`Hey!`}</p>
+      <p>Hey</p>
       <ul>
-      {stateData.map((post) => {
-          <li>{`${post.title}`}</li>
-          <li>{`post ${post.id}`}</li>
-      })}
+        {stateData?.map((post) => {
+          return(
+           <p>{post.id}</p> 
+          )
+        })</p>}
       </ul>
     </div>
   )
