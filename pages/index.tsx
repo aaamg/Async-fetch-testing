@@ -17,9 +17,10 @@ const Home: NextPage = () => {
       
       const response = await fetch(url)
       const result = await response.json();
-      console.log(result)
+      
       setStateData(result)
-      console.log("sd: ", stateData)
+      console.log("stateData: ", stateData)
+      
     } catch (error){
       
       console.log("Error fetching data: ", error);
@@ -27,24 +28,23 @@ const Home: NextPage = () => {
     }
   }
   
-    fetcher()    
+    fetcher();
   }, []) 
-  
-  
   
   return (
     <div className={styles.container}>
       <p>Hey</p>
-      <ul>
-        {stateData?.map((post) => {
+      <div>
+      {stateData?.length > 0 ? stateData?.map((post) => {
           return(
             <>
            <p key={post.id}>{post.id}</p>
            <p>{post.title}</p>
            </>           
           )
-        })}
-      </ul>
+        }) 
+        : <p>Loading...</p>}
+      </div>
     </div>
   )
 }
